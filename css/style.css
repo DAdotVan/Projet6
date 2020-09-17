@@ -16,8 +16,11 @@ case.obstacle {
 }
 
 case.joueur {
-    background : center / contain no-repeat url("../img/macron.png") yellow;
-    
+    background-color :  yellow;
+}
+
+case.listeJoueurs {
+    background: center / contain no-repeat url("../img/macron.png"); 
 }
 
 case.casePossible {

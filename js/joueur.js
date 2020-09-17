@@ -1,6 +1,6 @@
 // @ts-nocheck
 
-const joueurs = {
+const joueur = {
   list : [
     {
       id: 0,
@@ -33,27 +33,9 @@ const joueurs = {
       dommage: 50
     }
   ]
-};
 
-/**
- * [listeJoueurs description]
- *
- * @return  {string}  retourne un joueur
- */
-listeJoueurs() {
-  let listeJoueurs = this.list.length;
-  let autre;
-  let index;
-  // un element dans le tableau
-  while (listeJoueurs > 0) {
-    // au hasard
-    index = Math.floor(Math.random() * listeJoueurs);
-    // diminue listJoueur de 1
-    listeJoueurs--;
-    // change avec le dernier element
-    autre = this.list[listeJoueurs];
-    this.list[listeJoueurs] = this.list[index];
-    this.list[index] = autre;
-    }
-  return this.list;
 }
+
+
+
+

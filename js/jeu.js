@@ -73,7 +73,7 @@ class Jeu {
         for (qteJoueurs; qteJoueurs > 0; qteJoueurs--){
             error = false;
             idCase = this.randomCase;
-            listeJoueurs = this.casePossible(idCase,3);
+            listeJoueurs = this.casePossible(idCase,1);
             for( let i=0, size=listeJoueurs.length; i<size; i++){
                 if (! jeu[listeJoueurs[i]].obstacle || jeu[listeJoueurs[i]].joueurs !== null) error = true;
             }
@@ -110,10 +110,35 @@ class Jeu {
      * @returns {array}   liste des cases accessibles
      */
     casePossible(depart, decalage){
-        let idCase = null;
-        for (let i=0; i > idCase; idCase++){
-            depart = jeu[idCase].majJoueurs;
-            if (! jeu[this.randomCase].majCasePossible()) idCase++;
-          }
+        depart = idCase.joueurs;
+        for (i = 0; i < decalage; i++) {
+            }
+        }
     }
+
+    /**
+     * [listeJoueurs description]
+     *
+     * @return  {string}  retourne un joueur
+     */
+    listeJoueurs() {
+        let listeJoueurs = this.list.length;
+        let autre;
+        let index;
+        // un element dans le tableau
+        while (listeJoueurs > 0) {
+          // au hasard
+          index = Math.floor(Math.random() * listeJoueurs);
+          // diminue listJoueur de 1
+          listeJoueurs--;
+          // change avec le dernier element
+          autre = this.list[listeJoueurs];
+          this.list[listeJoueurs] = this.list[index];
+          this.list[index] = autre;
+          }
+        return this.list;
+      }
+
+
+
 }

@@ -17,6 +17,7 @@ class Case {
         this.render();
         return true;
     }
+    
     majJoueurs(id) {
         if (this.joueurs !== null || this.obstacles) return false;
         this.joueurs = id;
@@ -26,11 +27,10 @@ class Case {
 
     majCasePossible(col, row) {
         if (this.casePossible !== null) return false;
-        this.casePossibleCol = col;
-        this.casePossibleRow = row;
-        this.casePossible(idCase, 2);
+        this.render();
         return true;
     }
+
     render() {
         if (this.obstacles) return this.DOM.className = "obstacle";
         if (this.joueurs !== null) return this.DOM.className = "joueur";
