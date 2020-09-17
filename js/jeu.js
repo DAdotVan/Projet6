@@ -13,7 +13,8 @@ class Jeu {
         this.nbObstacles    = nbObstacles;
         this.nbArmes        = nbArmes;
         this.nbJoueurs      = nbJoueurs;
-        this.casePossible();
+        this.cases          = {};
+        // this.casePossible();
         this.genereJeu();
         this.genereObstacles(nbObstacles);
         this.genereJoueurs(nbJoueurs);
@@ -56,7 +57,7 @@ class Jeu {
      */
     genereObstacles(qteObstacles){
         for (qteObstacles; qteObstacles >  0; qteObstacles--){
-          if (! jeu[this.randomCase].majObstacles()) qteObstacles++;
+          if (! this.cases[this.randomCase].majObstacles()) qteObstacles++;
         }
     }
     /**
@@ -67,17 +68,23 @@ class Jeu {
      * @return  {string}              joueur sur une case au hasard
      */
     genereJoueurs(qteJoueurs){
+        qteJoueurs = 1;
         let idCase = null;
-        let listeJoueurs = [];
+        let listeCasesAccessibles = [];
         let error = false;
         for (qteJoueurs; qteJoueurs > 0; qteJoueurs--){
             error = false;
             idCase = this.randomCase;
-            listeJoueurs = this.casePossible(idCase,1);
-            for( let i=0, size=listeJoueurs.length; i<size; i++){
-                if (! jeu[listeJoueurs[i]].obstacle || jeu[listeJoueurs[i]].joueurs !== null) error = true;
+            listeCasesAccessibles = this.casePossible(idCase, 1, true);
+            console.log("liste joueurs", listeCasesAccessibles);
+            for( let i=0, size=listeCasesAccessibles.length; i<size; i++){
+                if (! this.cases[listeCasesAccessibles[i]].obstacle || this.cases[listeCasesAccessibles[i]].joueurs !== null) error = true; //TODO: cooriger logique ici
             }
-          if (! jeu[idCase].majJoueurs(qteJoueurs) || error) qteJoueurs++;
+            console.log(idCase, this.cases[idCase].majJoueurs(qteJoueurs) , error)
+          if (!this.cases[idCase].majJoueurs(qteJoueurs) || error) { //TODO: veriifier logique ici
+            //   qteJoueurs++;
+            //TODO: remettre qteJoueurs++
+          }
           console.log(qteJoueurs, idCase);
         }
     }    
@@ -103,17 +110,36 @@ class Jeu {
     }
 
     /**
+     * permet de savoir quelles sont les cases adjancentes 
      * 
-     * @param {number} decalage 
-     * @param {string} depart
+     * @param {number} decalage  profondeur par exemple 1 pour le placement des joueurs pour savoir si il y a un autre joueur sur une case adjacente ou 3 pour un déplacement conventionnel
+     * @param {string} depart    id de la case du joueur
+     * @param {boolean} tableau  permet de retourner un tableau au lieu d'un objet
      * 
-     * @returns {array}   liste des cases accessibles
+     * @returns {object|array}   liste des cases accessibles
      */
-    casePossible(depart, decalage){
-        depart = idCase.joueurs;
-        for (i = 0; i < decalage; i++) {
-            }
+    casePossible(depart, decalage , tableau=false){
+        const departColonne = this.cases[depart].colonne;
+        const departRangee  = this.cases[depart].rangee;
+        let retour = {
+            haut  : [],
+            droite: [],
+            bas   : [],
+            gauche: []
+        };
+        if (tableau) retour = [];
+        let caseCible;
+        for (let i = 0; i < decalage; i++) {
+            caseCible = this.caseName(departColonne, departRangee-1);
+            if (this.cases[caseCible] !== undefined) tableau ? retour.push(caseCible) : retour.haut.push(caseCible);
+            caseCible = this.caseName(departColonne, departRangee+1);
+            if (this.cases[caseCible] !== undefined) tableau ? retour.push(caseCible) : retour.bas.push(caseCible);
+            caseCible = this.caseName(departColonne-1, departRangee);
+            if (this.cases[caseCible] !== undefined) tableau ? retour.push(caseCible) : retour.gauche.push(caseCible);
+            caseCible = this.caseName(departColonne+1, departRangee);
+            if (this.cases[caseCible] !== undefined) tableau ? retour.push(caseCible) : retour.droite.push(caseCible);
         }
+        return retour;
     }
 
     /**

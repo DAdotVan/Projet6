@@ -1,13 +1,13 @@
 class Case {
-    constructor(id, colonnes, rangees, domTarget) {
-        this.DOM            = document.createElement("case");
-        this.DOM.innerText  = id;
-        this.colonnes       = colonnes;
-        this.rangees        = rangees;
-        this.obstacles      = false;
-        this.joueurs        = null;
-        this.casePossible   = null;
-        window.jeu[id]      = this;
+    constructor(id, colonne, rangee, domTarget) {
+        this.DOM             = document.createElement("case");
+        this.DOM.innerText   = id;
+        this.colonne         = colonne;
+        this.rangee          = rangee;
+        this.obstacles       = false;
+        this.joueurs         = null;
+        this.casePossible    = null;
+        window.jeu.cases[id] = this;
         domTarget.appendChild(this.DOM);
     }
 
