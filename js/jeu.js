@@ -14,6 +14,7 @@ class Jeu {
         this.nbArmes        = nbArmes;
         this.nbJoueurs      = nbJoueurs;
         this.cases          = {};
+        this.joueurs        = [];
         this.genereJeu();
         this.genereObstacles(nbObstacles);
         this.genereJoueurs(nbJoueurs);
@@ -72,7 +73,7 @@ class Jeu {
         let idCase = null;
         let listeCasesAccessibles = [];
         let error = false;
-        for (qteJoueurs; qteJoueurs > 0; qteJoueurs--){
+        for (let i=0; i< qteJoueurs; i++){
             error = false;
             idCase = this.randomCase;
             listeCasesAccessibles = this.casePossible(idCase, 1, true);
@@ -80,12 +81,11 @@ class Jeu {
             for( let i=0, size=listeCasesAccessibles.length; i<size; i++){
                 if (!this.cases[listeCasesAccessibles[i]].obstacles || this.cases[listeCasesAccessibles[i]].joueurs !== null) error = false; 
             }
-            console.log(idCase, this.cases[idCase].majJoueurs(qteJoueurs) , error)
+            if (!this.cases[idCase].majJoueurs(i) || error) i--;
+            else new Joueur(i, idCase);
         }
-          if (!this.cases[idCase].majJoueurs(qteJoueurs) || error) { //TODO: veriifier logique ici
-              qteJoueurs++; //TODO: remettre qteJoueurs++
-          }
-          console.log(qteJoueurs, idCase);
+          
+        //   console.log(qteJoueurs, idCase);
         
     }    
 
@@ -129,15 +129,15 @@ class Jeu {
         };
         if (tableau) retour = [];
         let caseCible;
-        for (let i = 0; i < decalage; i++) {
-            caseCible = this.caseName(departColonne, departRangee-1);
-            if (this.cases[caseCible] !== undefined) tableau ? retour.push(caseCible) : retour.haut.push(caseCible);
-            caseCible = this.caseName(departColonne, departRangee+1);
-            if (this.cases[caseCible] !== undefined) tableau ? retour.push(caseCible) : retour.bas.push(caseCible);
-            caseCible = this.caseName(departColonne-1, departRangee);
+        for (let i = 1; i <= decalage; i++) {
+            caseCible = this.caseName(departColonne, departRangee-i);
             if (this.cases[caseCible] !== undefined) tableau ? retour.push(caseCible) : retour.gauche.push(caseCible);
-            caseCible = this.caseName(departColonne+1, departRangee);
+            caseCible = this.caseName(departColonne, departRangee+i);
             if (this.cases[caseCible] !== undefined) tableau ? retour.push(caseCible) : retour.droite.push(caseCible);
+            caseCible = this.caseName(departColonne-i, departRangee);
+            if (this.cases[caseCible] !== undefined) tableau ? retour.push(caseCible) : retour.haut.push(caseCible);
+            caseCible = this.caseName(departColonne+i, departRangee);
+            if (this.cases[caseCible] !== undefined) tableau ? retour.push(caseCible) : retour.bas.push(caseCible);
         }
         return retour;
     }

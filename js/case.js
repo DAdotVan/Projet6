@@ -1,14 +1,13 @@
-class Case {
+class Case extends Composant {
     constructor(id, colonne, rangee, domTarget) {
-        this.DOM             = document.createElement("case");
-        this.DOM.innerText   = id;
-        this.colonne         = colonne;
-        this.rangee          = rangee;
-        this.obstacles       = false;
-        this.joueurs         = null;
-        this.casePossible    = null;
+        super(id,domTarget, "case");        
+        this.DOM.innerText = id;
+        this.colonne = colonne;
+        this.rangee = rangee;
+        this.obstacles = false;
+        this.joueurs = null;
+        this.casePossible = null;
         window.jeu.cases[id] = this;
-        domTarget.appendChild(this.DOM);
     }
 
     majObstacles() {
@@ -17,7 +16,7 @@ class Case {
         this.render();
         return true;
     }
-    
+
     majJoueurs(id) {
         if (this.joueurs !== null || this.obstacles) return false;
         this.joueurs = id;
@@ -26,7 +25,7 @@ class Case {
     }
 
     majCasePossible() {
-        if (this.casePossible !== null) return false;
+        if (this.joueurs !== null || this.obstacles) return false;
         this.casePossible = true;
         this.render();
         return true;
@@ -34,7 +33,7 @@ class Case {
 
     render() {
         if (this.obstacles) return this.DOM.className = "obstacle";
-        if (this.joueurs !== null) return this.DOM.className = "joueur";
+        if (this.joueurs !== null) return this.DOM.className = "joueur" + this.joueurs;
         if (this.casePossible !== null) return this.DOM.className = "casePossible";
     }
 
