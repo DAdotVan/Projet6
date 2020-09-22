@@ -15,15 +15,13 @@ case.obstacle {
     background : center / contain no-repeat url("../img/obstacle.png") rgba(204,204,204,1);
 }
 
+
 case.joueur {
-    background-color :  yellow;
+    background : center / contain no-repeat url("../img/macron.png") yellow;
 }
 
-case.listeJoueurs {
-    background: center / contain no-repeat url("../img/macron.png"); 
-}
 
-case.casePossible {
+.casePossible {
     background-color: cornflowerblue;
 }
 

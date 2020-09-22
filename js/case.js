@@ -25,8 +25,9 @@ class Case {
         return true;
     }
 
-    majCasePossible(col, row) {
+    majCasePossible() {
         if (this.casePossible !== null) return false;
+        this.casePossible = true;
         this.render();
         return true;
     }
@@ -36,7 +37,6 @@ class Case {
         if (this.joueurs !== null) return this.DOM.className = "joueur";
         if (this.casePossible !== null) return this.DOM.className = "casePossible";
     }
-
 
 }
 
@@ -59,6 +59,19 @@ class Composant{
       this.DOM = document.createElement(tagName);
       domTarget.appendChild(this.DOM);
       window.jeu[this.name] = this;
+    }
+  }
+*/
+
+/*
+  class joueur{
+    constructor(domTarget, id, nom, point){
+      this.DOM = document.createElement(class);
+      domTarget.appendChild("joueur");
+      window.jeu[this.name] = this;  
+      this.id = id;    
+      this.nom = nom;
+      this.point = point;
     }
   }
 */

@@ -1,39 +1,35 @@
 // @ts-nocheck
 
 const joueur = {
-  list : [
+  liste : [
     {
       id: 0,
-      image: url("../img/macron.png"),
-      nom: macron,
-      dommage: 10
+      nomJoueur: macron,
+      pointJoueur: null
     },
     {
       id: 1,
-      image: url("../img/trump.png"),
-      nom: trump,
-      dommage: 20
+      nomJoueur: trump,
+      pointJoueur: null
     },
     {
       id: 2,
-      image: url("../img/merkel.png"),
-      nom: merkel,
-      dommage: 30
+      nomJoueur: merkel,
+      pointJoueur: null
     },	
     {
       id: 3,
-      image: url("../img/poutine.png"),
-      nom: poutine,
-      dommage: 40
+      nomJoueur: poutine,
+      pointJoueur: null
     },	
     {
       id: 4,
-      image: url("../img/jinping.png"),
-      nom: jinping,
-      dommage: 50
+      nomJoueur: jinping,
+      pointJoueur: null
     }
   ]
 
+  
 }
 
 

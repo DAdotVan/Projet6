@@ -14,7 +14,6 @@ class Jeu {
         this.nbArmes        = nbArmes;
         this.nbJoueurs      = nbJoueurs;
         this.cases          = {};
-        // this.casePossible();
         this.genereJeu();
         this.genereObstacles(nbObstacles);
         this.genereJoueurs(nbJoueurs);
@@ -29,8 +28,10 @@ class Jeu {
      * @return  {string}             cases formées par les rangées et les colonnes
      */
     caseName(idColonne, idRangee) {
-        const alpha = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l"];
-            return alpha [idColonne] + idRangee;
+        const alpha = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"];
+        for (let idRangee = 0; idRangee < 10; idRangee++); {
+        }
+        return alpha [idColonne] + idRangee;
     }
 
     /**
@@ -68,7 +69,6 @@ class Jeu {
      * @return  {string}              joueur sur une case au hasard
      */
     genereJoueurs(qteJoueurs){
-        qteJoueurs = 1;
         let idCase = null;
         let listeCasesAccessibles = [];
         let error = false;
@@ -78,15 +78,15 @@ class Jeu {
             listeCasesAccessibles = this.casePossible(idCase, 1, true);
             console.log("liste joueurs", listeCasesAccessibles);
             for( let i=0, size=listeCasesAccessibles.length; i<size; i++){
-                if (! this.cases[listeCasesAccessibles[i]].obstacle || this.cases[listeCasesAccessibles[i]].joueurs !== null) error = true; //TODO: cooriger logique ici
+                if (!this.cases[listeCasesAccessibles[i]].obstacles || this.cases[listeCasesAccessibles[i]].joueurs !== null) error = false; 
             }
             console.log(idCase, this.cases[idCase].majJoueurs(qteJoueurs) , error)
+        }
           if (!this.cases[idCase].majJoueurs(qteJoueurs) || error) { //TODO: veriifier logique ici
-            //   qteJoueurs++;
-            //TODO: remettre qteJoueurs++
+              qteJoueurs++; //TODO: remettre qteJoueurs++
           }
           console.log(qteJoueurs, idCase);
-        }
+        
     }    
 
     /**
@@ -118,7 +118,7 @@ class Jeu {
      * 
      * @returns {object|array}   liste des cases accessibles
      */
-    casePossible(depart, decalage , tableau=false){
+    casePossible(depart, decalage, tableau=false){
         const departColonne = this.cases[depart].colonne;
         const departRangee  = this.cases[depart].rangee;
         let retour = {
