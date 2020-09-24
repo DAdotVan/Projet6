@@ -39,8 +39,20 @@ case.joueur5 {
     background : var(--joueur5Image);
 }
 
-case.arme0 {
-    background: var(--arme0Image);
+case.arme1 {
+    background: var(--arme1Image);
+}
+case.arme2 {
+    background: var(--arme2Image);
+}
+case.arme3 {
+    background: var(--arme3Image);
+}
+case.arme4 {
+    background: var(--arme4Image);
+}
+case.arme5 {
+    background: var(--arme5Image);
 }
 
 
@@ -58,4 +70,8 @@ plateau {
 
 joueur {
     border: 1px solid red;
+}
+
+ligne{
+    display: block;
 }

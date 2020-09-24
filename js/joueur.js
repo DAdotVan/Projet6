@@ -1,9 +1,10 @@
 // @ts-nocheck
 
 class Joueur extends Composant{
-  constructor(id, position){
+  constructor(id, position, arme){
     console.log("id",id)
-    super(donneesJoueurs[id].nomJoueur,document.body,"joueur")
+    super(donneesJoueurs[id].nomJoueur,document.body,"joueur");
+    this.arme = arme;
     this.id = id;
     this.points = 100;
     this.position = position;
@@ -16,7 +17,9 @@ class Joueur extends Composant{
   render(){
     this.DOM.innerHTML = `
     <h2>${this.nom}</h2>
-    Points de vie : ${this.points}
+    <ligne>Points de vie : ${this.points}</ligne>
+    <ligne>${this.arme.nomArme}</ligne>
+    <ligne>Dégats : ${this.arme.dommages}</ligne>
     `
   }
 }

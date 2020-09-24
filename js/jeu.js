@@ -1,7 +1,8 @@
 // @ts-nocheck
 
 /**
- * [Jeu description]
+ * @class
+ * gère le gameplay du jeu
  */
 class Jeu {
     constructor(nbColonnes, nbRangees, nbObstacles, nbArmes, nbJoueurs) {
@@ -18,7 +19,7 @@ class Jeu {
         this.genereJeu();
         this.genereObstacles(nbObstacles);
         this.genereJoueurs(nbJoueurs);
-        //this.genereArmes();
+        this.genereArmes(nbArmes);
     } 
 
     /**
@@ -68,7 +69,7 @@ class Jeu {
      *
      * @param   {number}  qteJoueurs  [qteJoueurs description]
      *
-     * @return  {string}              joueur sur une case au hasard
+     * @return  {void}
      */
     genereJoueurs(qteJoueurs){
         let idCase = null;
@@ -83,11 +84,8 @@ class Jeu {
                 if (!this.cases[listeCasesAccessibles[i]].obstacles || this.cases[listeCasesAccessibles[i]].joueurs !== null) error = false; 
             }
             if (!this.cases[idCase].majJoueurs(i) || error) i--;
-            else new Joueur(i, idCase);
+            else new Joueur(i, idCase, donneesArmes[0]);
         }
-          
-        //   console.log(qteJoueurs, idCase);
-        
     }    
 
     /**
@@ -123,10 +121,10 @@ class Jeu {
         const departColonne = this.cases[depart].colonne;
         const departRangee  = this.cases[depart].rangee;
         let retour = {
-            haut  : [],
-            droite: [],
             bas   : [],
-            gauche: []
+            droite: [],
+            gauche: [],
+            haut  : []
         };
         if (tableau) retour = [];
         let caseCible;
@@ -149,9 +147,9 @@ class Jeu {
      * @return  {string}  retourne un joueur
      */
     listeJoueurs() {
-        let listeJoueurs = this.list.length;
         let autre;
         let index;
+        let listeJoueurs = this.list.length;
         // un element dans le tableau
         while (listeJoueurs > 0) {
           // au hasard
@@ -168,17 +166,18 @@ class Jeu {
 
 
      /**
-     * [listeJoueurs description]
+     * place les armes sur le plateau
      *
-     * @return  {string}  retourne un joueur
+     * @return  {void}
      */
-    listeArmes(qteArmes) {
-            for (qteArmes; qteArmes >  0; qteArmes--){
-              if (! this.cases[this.randomCase].majArmes()) qteArmes++;
-            }
+    genereArmes(qteArmes) {
+        let arme;
+        // on commence à 1 car l'arme 0 c'est l'arme par défaut des joueurs
+        for (let i = 1; i < qteArmes; i++){
+            console.log("genereArmes",qteArmes, i)
+            arme = donneesArmes[i];
+            if (! this.cases[this.randomCase].majArmes(arme)) i--;
+            else  document.documentElement.style.setProperty(`--${arme.nomArme}Image`, ` center / contain no-repeat url("../img/${arme.nomArme}.png") red`);
         }
-
-      
-
-
+    }
 }

@@ -25,7 +25,7 @@ class Case extends Composant {
         return true;
     }
 
-    majArmes() {
+    majArmes(arme) {
       if (this.arme !== null || this.obstacles || this.joueurs) return false;
       this.arme = arme;
       this.render();
@@ -41,9 +41,9 @@ class Case extends Composant {
 
     render() {
         if (this.obstacles) return this.DOM.className = "obstacle";
-        if (this.arme) return this.DOM.className = "arme";
+        if (this.arme) this.DOM.className = this.arme.nomArme;
         if (this.joueurs !== null) return this.DOM.className = "joueur" + this.joueurs;
-        if (this.casePossible !== null) return this.DOM.className = "casePossible";
+        if (this.casePossible !== null) return this.DOM.className += " casePossible";
     }
 }
 
