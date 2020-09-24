@@ -6,6 +6,7 @@ class Case extends Composant {
         this.rangee = rangee;
         this.obstacles = false;
         this.joueurs = null;
+        this.arme = null;
         this.casePossible = null;
         window.jeu.cases[id] = this;
     }
@@ -24,6 +25,13 @@ class Case extends Composant {
         return true;
     }
 
+    majArmes() {
+      if (this.arme !== null || this.obstacles || this.joueurs) return false;
+      this.arme = arme;
+      this.render();
+      return true;
+    }
+
     majCasePossible() {
         if (this.joueurs !== null || this.obstacles) return false;
         this.casePossible = true;
@@ -33,10 +41,10 @@ class Case extends Composant {
 
     render() {
         if (this.obstacles) return this.DOM.className = "obstacle";
+        if (this.arme) return this.DOM.className = "arme";
         if (this.joueurs !== null) return this.DOM.className = "joueur" + this.joueurs;
         if (this.casePossible !== null) return this.DOM.className = "casePossible";
     }
-
 }
 
 

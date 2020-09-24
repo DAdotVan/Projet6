@@ -26,10 +26,26 @@ case.joueur0 {
 case.joueur1 {
     background : var(--joueur1Image);
 }
+case.joueur2 {
+    background : var(--joueur2Image);
+}
+case.joueur3 {
+    background : var(--joueur3Image);
+}
+case.joueur4 {
+    background : var(--joueur4Image);
+}
+case.joueur5 {
+    background : var(--joueur5Image);
+}
+
+case.arme0 {
+    background: var(--arme0Image);
+}
 
 
-.casePossible {
-    background-color: cornflowerblue;
+case.casePossible {
+    background-color: yellow;
 }
 
 plateau {

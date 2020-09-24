@@ -16,7 +16,7 @@ class Joueur extends Composant{
   render(){
     this.DOM.innerHTML = `
     <h2>${this.nom}</h2>
-    vie : ${this.points}
+    Points de vie : ${this.points}
     `
   }
 }

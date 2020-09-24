@@ -18,6 +18,7 @@ class Jeu {
         this.genereJeu();
         this.genereObstacles(nbObstacles);
         this.genereJoueurs(nbJoueurs);
+        //this.genereArmes();
     } 
 
     /**
@@ -165,6 +166,19 @@ class Jeu {
         return this.list;
       }
 
+
+     /**
+     * [listeJoueurs description]
+     *
+     * @return  {string}  retourne un joueur
+     */
+    listeArmes(qteArmes) {
+            for (qteArmes; qteArmes >  0; qteArmes--){
+              if (! this.cases[this.randomCase].majArmes()) qteArmes++;
+            }
+        }
+
+      
 
 
 }

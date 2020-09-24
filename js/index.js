@@ -1,27 +1,27 @@
 var donneesJoueurs = [
     {
       // id: 0,
-      nomJoueur: "macron",
+      nomJoueur: "joueur1",
       pointJoueur: null
     },
     {
       // id: 1,
-      nomJoueur: "trump",
+      nomJoueur: "joueur2",
       pointJoueur: null
     },
     {
       // id: 2,
-      nomJoueur: "merkel",
+      nomJoueur: "joueur3",
       pointJoueur: null
     },	
     {
       // id: 3,
-      nomJoueur: "poutine",
+      nomJoueur: "joueur4",
       pointJoueur: null
     },	
     {
       // id: 4,
-      nomJoueur: "jinping",
+      nomJoueur: "joueur5",
       pointJoueur: null
     }
   ];
