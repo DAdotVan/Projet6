@@ -24,19 +24,23 @@ var donneesJoueurs = [
   var donneesArmes = [
     {
       nomArme: "Poisson mort", //arme par défaut
-      dommages: 10
+      dommages: 10,
+      image : "poissonmort.png"
     },
     {
       nomArme: "Lance-pierre",
-      dommages: 20
+      dommages: 20,
+      image : "lancepierre.png"
     },	
     {
       nomArme: "Arc",
-      dommages: 30
+      dommages: 30,
+      image : "arc.png"
     },	
     {
       nomArme: "Laser",
-      dommages: 40
+      dommages: 40,
+      image : "laser.png"
     }
   ];
 

@@ -40,8 +40,12 @@ class Case extends Composant {
     }
 
     render() {
+      this.DOM.style.backgroundImage = "";
         if (this.obstacles) return this.DOM.className = "obstacle";
-        if (this.arme) this.DOM.className = this.arme.nomArme;
+        if (this.arme) {
+          this.DOM.className = "arme";
+          this.DOM.style.backgroundImage = `url(img/${this.arme.image})`;
+        }
         if (this.joueurs !== null) return this.DOM.className = "joueur" + this.joueurs;
         if (this.casePossible !== null) return this.DOM.className += " casePossible";
     }

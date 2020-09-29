@@ -178,7 +178,7 @@ class Jeu {
             console.log("genereArmes",qteArmes, i)
             arme = donneesArmes[i];
             if (! this.cases[this.randomCase].majArmes(arme)) i--;
-            else  document.documentElement.style.setProperty(`--${arme.nomArme}Image`, ` center / contain no-repeat url("../img/${nomArme}.png") yellow`);
+            // else  document.documentElement.style.setProperty(`--${arme.nomArme}Image`, ` center / contain no-repeat url("../img/${arme.nomArme}.png") yellow`);
         }
     }
 }
