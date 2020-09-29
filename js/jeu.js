@@ -16,10 +16,12 @@ class Jeu {
         this.nbJoueurs      = nbJoueurs;
         this.cases          = {};
         this.joueurs        = [];
+        this.joueurActuel   = -1;
         this.genereJeu();
         this.genereObstacles(nbObstacles);
         this.genereJoueurs(nbJoueurs);
         this.genereArmes(nbArmes);
+        this.tourSuivant();
     } 
 
     /**
@@ -83,7 +85,7 @@ class Jeu {
             for( let i=0, size=listeCasesAccessibles.length; i<size; i++){
                 if (!this.cases[listeCasesAccessibles[i]].obstacles || this.cases[listeCasesAccessibles[i]].joueurs !== null) error = false; 
             }
-            if (!this.cases[idCase].majJoueurs(i) || error) i--;
+            if (!this.cases[idCase].majJoueur(i) || error) i--;
             else new Joueur(i, idCase, donneesArmes[0]);
         }
     }    
@@ -180,5 +182,11 @@ class Jeu {
             if (! this.cases[this.randomCase].majArmes(arme)) i--;
             // else  document.documentElement.style.setProperty(`--${arme.nomArme}Image`, ` center / contain no-repeat url("../img/${arme.nomArme}.png") yellow`);
         }
+    }
+    
+    tourSuivant(){
+        this.joueurActuel++;
+        if (this.joueurActuel>=this.nbJoueurs) this.joueurActuel = 0;
+        this.joueurs[this.joueurActuel].joue();
     }
 }
