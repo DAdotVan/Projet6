@@ -8,7 +8,7 @@ class Joueur extends Composant{
     this.id = id;
     this.points = 100;
     this.position = position;
-    document.documentElement.style.setProperty(`--joueur${this.id}Image`, ` center / contain no-repeat url("../img/${this.nom}.png") yellow`);
+    document.documentElement.style.setProperty(`--joueur${this.id}Image`, ` center / contain no-repeat url("../img/${this.nom}.png")`);
     jeu.joueurs.push(this);
     this.render();
   }

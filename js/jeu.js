@@ -65,9 +65,9 @@ class Jeu {
         }
     }
     /**
-     * [genereJoueurs description]
+     * permet de positionner les joueurs selon les cases dispos
      *
-     * @param   {number}  qteJoueurs  [qteJoueurs description]
+     * @param   {number}  qteJoueurs  quantité de joueurs à positionner
      *
      * @return  {void}
      */
@@ -89,7 +89,7 @@ class Jeu {
     }    
 
     /**
-     * [randomCase description]
+     * permet de selectionner une case au hasard
      *
      * @return  {string}  case au hasard
      */
@@ -98,7 +98,7 @@ class Jeu {
     }  
     
     /**
-     * [randomNumber description]
+     * permet de calculer aléatoirement
      *
      * @param   {number}  max  [max description]
      *
@@ -166,6 +166,7 @@ class Jeu {
 
 
      /**
+     * 
      * place les armes sur le plateau
      *
      * @return  {void}
@@ -177,7 +178,7 @@ class Jeu {
             console.log("genereArmes",qteArmes, i)
             arme = donneesArmes[i];
             if (! this.cases[this.randomCase].majArmes(arme)) i--;
-            else  document.documentElement.style.setProperty(`--${arme.nomArme}Image`, ` center / contain no-repeat url("../img/${arme.nomArme}.png") red`);
+            else  document.documentElement.style.setProperty(`--${arme.nomArme}Image`, ` center / contain no-repeat url("../img/${nomArme}.png") yellow`);
         }
     }
 }

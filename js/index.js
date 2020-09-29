@@ -1,54 +1,45 @@
 var donneesJoueurs = [
     {
-      // id: 0,
-      nomJoueur: "joueur1",
+      nomJoueur: "Macron",
       pointJoueur: null
     },
     {
-      // id: 1,
-      nomJoueur: "joueur2",
+      nomJoueur: "Merkel",
       pointJoueur: null
     },
     {
-      // id: 2,
-      nomJoueur: "joueur3",
+      nomJoueur: "Trump",
       pointJoueur: null
     },	
     {
-      // id: 3,
-      nomJoueur: "joueur4",
+      nomJoueur: "Jinping",
       pointJoueur: null
     },	
     {
-      // id: 4,
-      nomJoueur: "joueur5",
+      nomJoueur: "Poutine",
       pointJoueur: null
     }
   ];
 
   var donneesArmes = [
     {
-      nomArme: "arme1", //arme par défaut
+      nomArme: "Poisson mort", //arme par défaut
       dommages: 10
     },
     {
-      nomArme: "arme2",
+      nomArme: "Lance-pierre",
       dommages: 20
-    },
+    },	
     {
-      nomArme: "arme3",
+      nomArme: "Arc",
       dommages: 30
     },	
     {
-      nomArme: "arme4",
+      nomArme: "Laser",
       dommages: 40
-    },	
-    {
-      nomArme: "arme5",
-      dommages: 50
     }
   ];
 
 
 
-new Jeu (10, 10, 5, 5, 2);
+new Jeu (10, 10, 5, 4, 2);
