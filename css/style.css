@@ -39,25 +39,12 @@ case.joueur5 {
     background : var(--joueur5Image);
 }
 
-case.arme1 {
-    background: var(--arme1Image);
+case.arme {
+    background: center / contain no-repeat yellow;
 }
-case.arme2 {
-    background: var(--arme2Image);
-}
-case.arme3 {
-    background: var(--arme3Image);
-}
-case.arme4 {
-    background: var(--arme4Image);
-}
-case.arme5 {
-    background: var(--arme5Image);
-}
-
 
 case.casePossible {
-    background-color: yellow;
+    background-color: purple;
 }
 
 plateau {
@@ -69,7 +56,11 @@ plateau {
 
 
 joueur {
-    border: 1px solid red;
+    border: 1px solid cyan;
+    margin: 10px;
+    padding: 20px;
+    font: 1em sans-serif;
+
 }
 
 ligne{

@@ -16,10 +16,12 @@ class Jeu {
         this.nbJoueurs      = nbJoueurs;
         this.cases          = {};
         this.joueurs        = [];
+        this.joueurActuel   = -1;
         this.genereJeu();
         this.genereObstacles(nbObstacles);
         this.genereJoueurs(nbJoueurs);
         this.genereArmes(nbArmes);
+        this.tourSuivant();
     } 
 
     /**
@@ -65,9 +67,9 @@ class Jeu {
         }
     }
     /**
-     * [genereJoueurs description]
+     * permet de positionner les joueurs selon les cases dispos
      *
-     * @param   {number}  qteJoueurs  [qteJoueurs description]
+     * @param   {number}  qteJoueurs  quantité de joueurs à positionner
      *
      * @return  {void}
      */
@@ -83,13 +85,13 @@ class Jeu {
             for( let i=0, size=listeCasesAccessibles.length; i<size; i++){
                 if (!this.cases[listeCasesAccessibles[i]].obstacles || this.cases[listeCasesAccessibles[i]].joueurs !== null) error = false; 
             }
-            if (!this.cases[idCase].majJoueurs(i) || error) i--;
+            if (!this.cases[idCase].majJoueur(i) || error) i--;
             else new Joueur(i, idCase, donneesArmes[0]);
         }
     }    
 
     /**
-     * [randomCase description]
+     * permet de selectionner une case au hasard
      *
      * @return  {string}  case au hasard
      */
@@ -98,7 +100,7 @@ class Jeu {
     }  
     
     /**
-     * [randomNumber description]
+     * permet de calculer aléatoirement
      *
      * @param   {number}  max  [max description]
      *
@@ -166,6 +168,7 @@ class Jeu {
 
 
      /**
+     * 
      * place les armes sur le plateau
      *
      * @return  {void}
@@ -177,7 +180,13 @@ class Jeu {
             console.log("genereArmes",qteArmes, i)
             arme = donneesArmes[i];
             if (! this.cases[this.randomCase].majArmes(arme)) i--;
-            else  document.documentElement.style.setProperty(`--${arme.nomArme}Image`, ` center / contain no-repeat url("../img/${arme.nomArme}.png") red`);
+            // else  document.documentElement.style.setProperty(`--${arme.nomArme}Image`, ` center / contain no-repeat url("../img/${arme.nomArme}.png") yellow`);
         }
+    }
+    
+    tourSuivant(){
+        this.joueurActuel++;
+        if (this.joueurActuel>=this.nbJoueurs) this.joueurActuel = 0;
+        this.joueurs[this.joueurActuel].joue();
     }
 }
