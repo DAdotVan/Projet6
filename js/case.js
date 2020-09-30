@@ -19,7 +19,7 @@ class Case extends Composant {
   }
 
   majJoueur(id) {
-    if (this.joueur !== null || this.obstacles) return false;
+    if (this.joueur !== null || this.obstacles || this.arme) return false;
     this.joueur = id;
     this.render();
     return true;

@@ -25,7 +25,7 @@ class Joueur extends Composant{
   }
 
   joue(){
-    this.deplacements = jeu.casePossible(this.position,3,false);
+    this.deplacements = jeu.casePossible(this.position, 3, false);
     this.afficheMouvements("bas");
     this.afficheMouvements("droite");
     this.afficheMouvements("gauche");
@@ -47,7 +47,8 @@ class Joueur extends Composant{
 
   masqueMouvements(direction){
     for (let i=0, casesPossibles= this.deplacements[direction].length; i<casesPossibles; i++){
-      jeu.cases[this.deplacements[direction][i]].majCasePossible(false);
+      //if (jeu.cases[this.deplacements[direction][i]].majCasePossible(false));
+
     }
   }
 
@@ -58,8 +59,9 @@ class Joueur extends Composant{
     this.masqueMouvements("droite");
     this.masqueMouvements("gauche");
     this.masqueMouvements("haut");
-    
+
     const nouvelleArme = jeu.cases[idCase].echangeArme(this.arme);
     if (nouvelleArme !== null) this.arme = nouvelleArme;
   }
+  
 }
