@@ -7,7 +7,7 @@ class Case extends Composant {
     this.obstacles = false;
     this.joueur = null;
     this.arme = null;
-    this.casePossible = null;
+    this.casePossible = false;
     window.jeu.cases[id] = this;
   }
 
@@ -19,7 +19,7 @@ class Case extends Composant {
   }
 
   majJoueur(id) {
-    if (this.joueur !== null || this.obstacles) return false;
+    if (this.joueur !== null || this.obstacles || this.arme) return false;
     this.joueur = id;
     this.render();
     return true;
@@ -32,12 +32,7 @@ class Case extends Composant {
     return true;
   }
 
-  majCasePossible(affiche=true) {
-    if (!affiche){
-      this.casePossible = false;
-      this.render;
-      return;
-    }
+  majCasePossible() {
     if (this.joueur !== null || this.obstacles) return false;
     this.casePossible = true;
     this.render();
@@ -47,13 +42,14 @@ class Case extends Composant {
   render() {
     this.DOM.style.backgroundImage = "";
     this.DOM.onclick = null;
+    this.DOM.classList = [];
     if (this.obstacles) return this.DOM.className = "obstacle";
     if (this.arme) {
       this.DOM.className = "arme";
       this.DOM.style.backgroundImage = `url(img/${this.arme.image})`;
     }
     if (this.joueur !== null) return this.DOM.className = "joueur" + this.joueur;
-    if (this.casePossible !== null) {
+    if (this.casePossible) {
       this.DOM.className += " casePossible";
       this.DOM.onclick = this.click.bind(this);
     }
@@ -70,6 +66,12 @@ class Case extends Composant {
     const armeSurLaCase = this.arme;
     this.arme = armeJoueur;
     return armeSurLaCase;
+  }
+
+  maj(property, value){
+    this[property] = value;
+    console.log(this);
+    this.render();
   }
 }
 

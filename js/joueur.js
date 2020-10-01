@@ -25,7 +25,7 @@ class Joueur extends Composant{
   }
 
   joue(){
-    this.deplacements = jeu.casePossible(this.position,3,false);
+    this.deplacements = jeu.casePossible(this.position, 3, false);
     this.afficheMouvements("bas");
     this.afficheMouvements("droite");
     this.afficheMouvements("gauche");
@@ -47,19 +47,22 @@ class Joueur extends Composant{
 
   masqueMouvements(direction){
     for (let i=0, casesPossibles= this.deplacements[direction].length; i<casesPossibles; i++){
-      jeu.cases[this.deplacements[direction][i]].majCasePossible(false);
+      if (jeu.cases[this.deplacements[direction][i]].maj("casePossible", false));
+
     }
   }
 
   seDeplace(idCase){
-    console.log(idCase);
-    this.position = idCase;
+    console.log("seDeplace",idCase, this.position);
     this.masqueMouvements("bas");
     this.masqueMouvements("droite");
     this.masqueMouvements("gauche");
     this.masqueMouvements("haut");
-    
+    jeu.cases[this.position].maj("joueur",null);
+    this.position = idCase;
     const nouvelleArme = jeu.cases[idCase].echangeArme(this.arme);
     if (nouvelleArme !== null) this.arme = nouvelleArme;
+    jeu.tourSuivant();
   }
+  
 }
