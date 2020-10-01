@@ -2,13 +2,14 @@
 
 class Joueur extends Composant{
   constructor(id, position, arme){
-    console.log("id",id)
+    // console.log("id",id)
     super(donneesJoueurs[id].nomJoueur,document.body,"joueur");
-    this.arme = arme;
-    this.id = id;
-    this.points = 100;
-    this.position = position;
+    this.arme     = arme;
+    this.combat   = false;
     this.deplacements;
+    this.id       = id;
+    this.points   = 100;
+    this.position = position;
     document.documentElement.style.setProperty(`--joueur${this.id}Image`, ` center / contain no-repeat url("../img/${this.nom}.png")`);
     jeu.joueurs.push(this);
     this.render();
@@ -16,20 +17,17 @@ class Joueur extends Composant{
 
 
   render(){
-    this.DOM.innerHTML = `
-    <h2>${this.nom}</h2>
-    <ligne>Points de vie : ${this.points}</ligne>
-    <ligne>${this.arme.nomArme}</ligne>
-    <ligne>Dégats : ${this.arme.dommages}</ligne>
-    `;
+    this.DOM.innerHTML = this.templateBase + (this.combat ? this.templateCombat : "");
   }
 
-  joue(){
+  joue(combat){
     this.deplacements = jeu.casePossible(this.position, 3, false);
     this.afficheMouvements("bas");
     this.afficheMouvements("droite");
     this.afficheMouvements("gauche");
     this.afficheMouvements("haut");
+    this.combat = combat;
+    this.render();
   }
 
   /**
@@ -53,7 +51,6 @@ class Joueur extends Composant{
   }
 
   seDeplace(idCase){
-    console.log("seDeplace",idCase, this.position);
     this.masqueMouvements("bas");
     this.masqueMouvements("droite");
     this.masqueMouvements("gauche");
@@ -62,7 +59,25 @@ class Joueur extends Composant{
     this.position = idCase;
     const nouvelleArme = jeu.cases[idCase].echangeArme(this.arme);
     if (nouvelleArme !== null) this.arme = nouvelleArme;
+    this.combat = false;
+    this.render();
     jeu.tourSuivant();
+  }
+
+  get templateBase(){
+    return `
+    <h2>${this.nom}</h2>
+    <ligne>Points de vie : ${this.points}</ligne>
+    <ligne>${this.arme.nomArme}</ligne>
+    <ligne>Dégats : ${this.arme.dommages}</ligne>
+    `;
+  }
+
+  get templateCombat(){    
+    return `
+    <button>attaquer</button>
+    <button>se défendre</button>
+    `;
   }
   
 }

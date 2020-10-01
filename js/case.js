@@ -70,7 +70,6 @@ class Case extends Composant {
 
   maj(property, value){
     this[property] = value;
-    console.log(this);
     this.render();
   }
 }

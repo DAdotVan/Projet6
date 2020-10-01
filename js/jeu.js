@@ -81,7 +81,6 @@ class Jeu {
             error = false;
             idCase = this.randomCase;
             listeCasesAccessibles = this.casePossible(idCase, 1, true);
-            console.log("liste joueurs", listeCasesAccessibles);
             for( let i=0, size=listeCasesAccessibles.length; i<size; i++){
                 if (!this.cases[listeCasesAccessibles[i]].obstacles || this.cases[listeCasesAccessibles[i]].joueurs !== null) error = false; 
             }
@@ -177,16 +176,20 @@ class Jeu {
         let arme;
         // on commence à 1 car l'arme 0 c'est l'arme par défaut des joueurs
         for (let i = 1; i < qteArmes; i++){
-            console.log("genereArmes",qteArmes, i)
             arme = donneesArmes[i];
             if (! this.cases[this.randomCase].majArmes(arme)) i--;
-            // else  document.documentElement.style.setProperty(`--${arme.nomArme}Image`, ` center / contain no-repeat url("../img/${arme.nomArme}.png") yellow`);
         }
     }
     
     tourSuivant(){
         this.joueurActuel++;
         if (this.joueurActuel>=this.nbJoueurs) this.joueurActuel = 0;
-        this.joueurs[this.joueurActuel].joue();
+        const autour = this.casePossible(this.joueurs[this.joueurActuel].position, 1, true);
+        let combat = false;
+        for (let idJoueur = 0; idJoueur< this.nbJoueurs; idJoueur++){
+            if (this.joueurActuel === idJoueur) continue;
+            if (autour.indexOf(this.joueurs[idJoueur].position) !==-1) combat = true;            
+        }
+        this.joueurs[this.joueurActuel].joue(combat);
     }
 }
